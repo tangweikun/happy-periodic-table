@@ -3,10 +3,9 @@ import { elements } from "./_data";
 import { Element } from "./Element";
 
 export default function App() {
-  const [visible, setVisible] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   const [element, setElement] = useState({});
-
-  let {
+  const {
     name,
     summary,
     symbol,
@@ -21,57 +20,57 @@ export default function App() {
     boil
   } = element;
 
-  function showInfo(num) {
-    setVisible(true);
+  function handleShowInfo(num) {
+    setShowInfo(true);
     setElement(elements[num]);
   }
 
   function closeInfo() {
-    setVisible(false);
+    setShowInfo(false);
   }
 
   return (
     <div className="wrapper">
       <h1>The Periodic Table of Elements</h1>
 
-      <div id="table">
+      <div className="table">
         {/* 1 - 57 */}
         {Array(57)
           .fill(null)
           .map((_, index) => (
-            <Element showInfo={showInfo} num={index + 1} />
+            <Element handleShowInfo={handleShowInfo} num={index + 1} />
           ))}
 
         {/* 72 - 89 */}
         {Array(18)
           .fill(null)
           .map((_, index) => (
-            <Element showInfo={showInfo} num={index + 72} />
+            <Element handleShowInfo={handleShowInfo} num={index + 72} />
           ))}
 
         {/* 104 - 119 */}
         {Array(16)
           .fill(null)
           .map((_, index) => (
-            <Element showInfo={showInfo} num={index + 104} />
+            <Element handleShowInfo={handleShowInfo} num={index + 104} />
           ))}
 
         {/* 58 - 71 */}
         {Array(14)
           .fill(null)
           .map((_, index) => (
-            <Element showInfo={showInfo} num={index + 58} />
+            <Element handleShowInfo={handleShowInfo} num={index + 58} />
           ))}
 
         {/* 90 - 103 */}
         {Array(14)
           .fill(null)
           .map((_, index) => (
-            <Element showInfo={showInfo} num={index + 90} />
+            <Element handleShowInfo={handleShowInfo} num={index + 90} />
           ))}
 
         {/* Information Table */}
-        {visible ? (
+        {showInfo ? (
           <Fragment>
             <div id="element-box" className={`${category}`}>
               <div className="number">{number}</div>
@@ -104,7 +103,7 @@ export default function App() {
                   {boil ? <span> | Boil: {boil}K</span> : ""}
                 </div>
                 <div>
-                  {summary} ...{" "}
+                  {summary} ...
                   <a target="_blank" href={source}>
                     Source
                   </a>
@@ -116,7 +115,6 @@ export default function App() {
           ""
         )}
       </div>
-      <p className="center">2019</p>
     </div>
   );
 }
