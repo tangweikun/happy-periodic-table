@@ -70,7 +70,7 @@ export default function App() {
           ))}
 
         {/* Information Table */}
-        {showInfo ? (
+        {showInfo && (
           <Fragment>
             <div id="element-box" className={`${category}`}>
               <div className="number">{number}</div>
@@ -86,24 +86,22 @@ export default function App() {
                 Close [&times;]
               </div>
               <div>
-                <h1 className="big_title">{name}</h1>
+                <h1 className="big-title">{name}</h1>
                 <span className={`cat_name ${category}`}>{category}</span>
-                {appearance ? (
+                {appearance && (
                   <div className="appearance">
                     <strong>Appearance:</strong> {appearance}
                   </div>
-                ) : (
-                  ""
                 )}
                 <div className="atom_info">
                   <span>Atomic Mass: {atomic_mass} | </span>
                   <span>Density: {density}</span>
-                  {molar_heat ? <span> | Molar Heat: {molar_heat}</span> : ""}
-                  {melt ? <span> | Melt: {melt}K</span> : ""}
-                  {boil ? <span> | Boil: {boil}K</span> : ""}
+                  {molar_heat && <span> | Molar Heat: {molar_heat}</span>}
+                  {melt && <span> | Melt: {melt}K</span>}
+                  {boil && <span> | Boil: {boil}K</span>}
                 </div>
                 <div>
-                  {summary} ...
+                  {summary}
                   <a target="_blank" href={source}>
                     Source
                   </a>
@@ -111,8 +109,6 @@ export default function App() {
               </div>
             </div>
           </Fragment>
-        ) : (
-          ""
         )}
       </div>
     </div>
